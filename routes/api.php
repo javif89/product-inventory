@@ -21,7 +21,7 @@ Route::get('/check', function (Request $request) {
     return \App\User::first();
 });
 
-Route::get('/product/{id}', function ($id) {
+Route::get('/products/{id}', function ($id) {
    return \App\Product::with('variants')->where('id',$id)->first();
 });
 
