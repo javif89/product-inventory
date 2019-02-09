@@ -23,7 +23,7 @@ class ProductTest extends TestCase
         ];
 
         $this->postJson('api/products/create', $productData)
-            ->assertStatus(201)
+            ->assertStatus(200)
             ->assertJsonFragment([
                 'name' => $productData['name'],
                 'brand' => $productData['brand']
@@ -33,7 +33,8 @@ class ProductTest extends TestCase
                 'brand',
                 'updated_at',
                 'created_at',
-                'id'
+                'id',
+                'variants'
             ]);
     }
 

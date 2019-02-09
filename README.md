@@ -48,7 +48,13 @@ POST /api/products/create
 ```json
 {
   "name": "Product Name",
-  "brand": "Product Brand"
+  "brand": "Product Brand",
+  "variants": [
+    {
+        "type": "color",
+        "value": "blue"
+    }
+  ]
 }
 ```
 

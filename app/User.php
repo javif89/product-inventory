@@ -47,6 +47,7 @@ class User extends Authenticatable
 
     public function inventory()
     {
+        // Here we eager load only the variants of the product a user has
         return $this->products()
             ->with(['variants' => function($query) {
                 $query->whereIn('id', $this->variants->pluck('id'));

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Variant extends Model
 {
+    protected $fillable = ['type','value'];
+
     public function product() {
         return $this->belongsTo(Product::class);
     }

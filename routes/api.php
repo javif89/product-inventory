@@ -13,29 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/user/{user}/products', 'UserController@inventory');
 
-Route::get('/check', function (Request $request) {
-    return \App\User::first();
-});
+Route::get('/products/{id}', 'ProductController@view');
 
-Route::get('/products/{id}', function ($id) {
-   return \App\Product::with('variants')->where('id',$id)->first();
-});
+Route::post('/products/create', 'ProductController@create');
 
-Route::get('/user/{user}/products', function (\App\User $user) {
-    // Here we eager load only the variants of the product a user has
-    return $user->inventory();
-});
-
-Route::post('/products/create', function (Request $request) {
-    return \App\Product::create($request->all());
-});
-
-Route::delete('/products/{product}/delete', function (\App\Product $product) {
-    $product->variants()->delete();
-    $product->delete();
-    return $product;
-});
+Route::delete('/products/{product}/delete', 'ProductController@delete');
