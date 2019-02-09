@@ -6,7 +6,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Variant::class, function (Faker $faker) {
 
     $variantTypes = array("color","size");
-    $size = array("small","medium","large");
+    $size = array("small","medium","large","x-large","xx-large");
 
     $type = $variantTypes[array_rand($variantTypes)];
 

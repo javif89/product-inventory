@@ -27,11 +27,7 @@ Route::get('/product/{id}', function ($id) {
 
 Route::get('/user/{user}/products', function (\App\User $user) {
     // Here we eager load only the variants of the product a user has
-    return $user->products()
-        ->with(['variants' => function($query) use($user) {
-            $query->whereIn('id', $user->variants->pluck('id'));
-        }])
-        ->get();
+    return $user->inventory();
 });
 
 Route::post('/products/create', function (Request $request) {

@@ -44,4 +44,13 @@ class User extends Authenticatable
     public function variants() {
         return $this->belongsToMany(Variant::class);
     }
+
+    public function inventory()
+    {
+        return $this->products()
+            ->with(['variants' => function($query) {
+                $query->whereIn('id', $this->variants->pluck('id'));
+            }])
+            ->get();
+    }
 }
